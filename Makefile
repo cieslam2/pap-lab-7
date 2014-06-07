@@ -1,17 +1,15 @@
 SHELL = /bin/bash
-
-CC = gcc
+CC = gcc-4.2
 CFLAGS = -Wall --pedantic
-
 TARGET = bin/
 SRC = source/
 
-all: generate
-
-generate:
-	openssl req –newkey rsa:2048 –keyout root_key.pem –out root_request.pem
+zad1:
+	${CC} ${CFLAGS} ${SRC}zad1/bio_client.c -o ${TARGET}zad1/bio_client.o
+	${CC} ${CFLAGS} ${SRC}zad1/bio_server.c -o ${TARGET}zad1/bio_server.o
+	${CC} ${CFLAGS} ${SRC}zad1/fd_client.c -o ${TARGET}zad1/fd_client.o
+	${CC} ${CFLAGS} ${SRC}zad1/fd_server.c -o ${TARGET}zad1/fd_server.o
 
 clean:
 	find ${TARGET} -name "*.o" | xargs rm -rf
 
-.PHONY: all clean
