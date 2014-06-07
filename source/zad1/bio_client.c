@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
     int error = 0, read_in = 0;
     char buffer[512];
 
-    memset(buffer,'\0',sizeof(buffer));
+    memset(buffer, '\0', sizeof(buffer));
 
     OpenSSL_add_all_algorithms();
     SSL_library_init();
@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
         exit(1);
     }
 
-    SSL_set_bio(my_ssl,my_bio,my_bio);
+    SSL_set_bio(my_ssl, my_bio,my_bio);
 
     if (SSL_connect(my_ssl) <= 0) {
         ERR_print_errors_fp(stderr);
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
     SSL_free(my_ssl);
     SSL_CTX_free(my_ssl_ctx);
 
-    printf("%s",buffer);
+    printf("%s", buffer);
 
     return 0;
 

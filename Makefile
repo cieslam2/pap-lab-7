@@ -1,6 +1,6 @@
 SHELL = /bin/bash
-CC = gcc-4.2
-CFLAGS = -Wall --pedantic
+CC = gcc
+CFLAGS = -Wall --pedantic -I/local/Cellar/go/1.2.2/libexec/pkg/darwin_amd64/ -lcrypto -lssl
 TARGET = bin/
 SRC = source/
 
