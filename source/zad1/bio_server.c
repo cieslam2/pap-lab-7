@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <strings.h>
 #include <string.h>
+
+/* SSL includes */
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 

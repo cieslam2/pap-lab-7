@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     my_fd = socket(AF_INET, SOCK_STREAM, 0);
     bzero(&server, sizeof(server));
     server.sin_family = AF_INET;
-    server.sin_port = htons(5353);
+    server.sin_port = htons(5354);
     inet_aton("127.0.0.1", &server.sin_addr);
     bind(my_fd, (struct sockaddr *)&server, sizeof(server));
     connect(my_fd, (struct sockaddr *)&server, sizeof(server));

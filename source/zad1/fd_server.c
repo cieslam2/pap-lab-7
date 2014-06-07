@@ -8,6 +8,7 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+
 /* SSL includes */
 #include <openssl/ssl.h>
 #include <openssl/err.h>
@@ -43,7 +44,7 @@ SSL_library_init();
 
     my_fd = socket(PF_INET, SOCK_STREAM, 0);        
     server.sin_family = AF_INET;
-    server.sin_port = htons(5353);
+    server.sin_port = htons(5354);
     server.sin_addr.s_addr = INADDR_ANY;
     bind(my_fd, (struct sockaddr *)&server, sizeof(server));
     listen(my_fd, 5);
