@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     int sockd;
     int counter;
-    int fd;
+    int fd = 0;
     struct sockaddr_in xferServer;
     int returnStatus;
 	char buf[MAXBUF];
@@ -48,6 +48,7 @@ int main(int argc, char* argv[]) {
 	OpenSSL_add_all_algorithms();
 	SSL_library_init();
 	SSL_load_error_strings();
+
 	my_ssl_method = TLSv1_client_method();
 	my_ssl_ctx = SSL_CTX_new(my_ssl_method);
 
@@ -79,9 +80,10 @@ int main(int argc, char* argv[]) {
         fprintf(stderr, "Could not connect to server!\n");
         exit(1);
     }
-	puts("\n1-Poloczono");
 
-	SSL_set_fd(my_ssl,sockd);
+	puts("\n1. Poloczono");
+
+	SSL_set_fd(my_ssl, sockd);
 
 	if (SSL_connect(my_ssl) <= 0) {
 		ERR_print_errors_fp(stderr);
@@ -106,7 +108,7 @@ int main(int argc, char* argv[]) {
         exit(1);
     }
 
-	printf("2-Wyslano nazwe pliku %s\n",filename);
+	printf("2. Wyslano nazwe pliku %s\n",filename);
 
     /* zamknij polaczenie jednostronnie */
     //shutdown(sockd,SHUT_WR);
@@ -120,7 +122,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	rozmiar = htonl(rozmiar);
-	printf("3-Otrzymano rozmiar pliku = %ldB\n", rozmiar );
+	printf("3. Otrzymano rozmiar pliku = %ldB\n", rozmiar );
 
     /* otworz plik do zapisu */
 
@@ -131,7 +133,7 @@ int main(int argc, char* argv[]) {
 			perror("f. open()-otwieranie pliku do zapisu" ) ;
 			exit(2);
 		}
-		printf("4a-Odtworzono/utworzono plik: %s\n",destination);
+		printf("4. a) Odtworzono/utworzono plik: %s\n",destination);
  	}
 
 	//wypisanie na ekran
@@ -171,9 +173,9 @@ int main(int argc, char* argv[]) {
 	// ***
 	if (argc == 4) {
 		puts("---------------------------------------------\n");
-		printf("4-Przeczytano plik: %s ", filename);
+		printf("4. Przeczytano plik: %s ", filename);
 	} else if (argc == 5) {
-		printf("4b-zapisano do pliku: %s ", destination);
+		printf("4. b) zapisano do pliku: %s ", destination);
 	}
 
 	printf("(rozmiar prawidlowy)\n");
@@ -185,7 +187,7 @@ int main(int argc, char* argv[]) {
 	close(fd);
   	close(sockd);
 
-	puts("5-Zakonczono polaczenie\n");
+	puts("5. Zakonczono polaczenie\n");
 
   	return 0;
 }

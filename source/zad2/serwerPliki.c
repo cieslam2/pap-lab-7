@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
 	int opcja;
 
 	if (argc < 2) {
-		printf("usage: %s port \n", argv[0]);
+		printf("Usage: %s port \n", argv[0]);
 		return -1;
 	}
 
@@ -51,7 +51,7 @@ int main(int argc, char *argv[]) {
 	SSL_CTX_use_PrivateKey_file(my_ssl_ctx, "server.pem", SSL_FILETYPE_PEM);
 
 	if (SSL_CTX_check_private_key(my_ssl_ctx)) {
-		puts("### Klucz poprawny ###");
+		puts("Klucz poprawny");
 	} else {
 		fprintf(stderr, "Niepoprawny klucz\n");
 		exit(-1);
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 
     opcja = 1;
 
-	setsockopt(socket1,SOL_SOCKET, SO_REUSEADDR,(void *)&opcja, sizeof(opcja) );
+	setsockopt(socket1, SOL_SOCKET, SO_REUSEADDR, (void *) & opcja, sizeof(opcja) );
 
 	int port = atoi(argv[1]);
 
@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
     xferServer.sin_addr.s_addr = INADDR_ANY;
     xferServer.sin_port = htons(port);
 
-    returnStatus = bind(socket1, (struct sockaddr*)&xferServer, sizeof(xferServer));
+    returnStatus = bind(socket1, (struct sockaddr*) & xferServer, sizeof(xferServer));
 
     if (returnStatus == -1) {
         fprintf(stderr, "Could not bind to socket!\n");
@@ -92,7 +92,7 @@ int main(int argc, char *argv[]) {
     }
 
     for (;;) {
-        int fd;
+        int fd = 0;
         int i, readCounter, writeCounter;
         //char* bufptr;
         char buf[MAXBUF];

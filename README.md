@@ -24,3 +24,9 @@ Exercises to 7th and 8th lesson for subject: "Programowania aplikacji klient-ser
     openssl x509 -req -in server_request.pem -CA CA.pem -CAcreateserial -CAkey CA.pem -out server_certificate.pem
 
     cat server_certificate.pem server_key.pem CAcert.pem root_certificate.pem > server.pem
+
+
+# Zadanie 2
+
+  ../bin/zad2/serwerPliki.o 1234
+  ../bin/zad2/klientPliki.o 127.0.0.1 1234 root.srl

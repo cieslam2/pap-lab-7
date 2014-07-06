@@ -25,3 +25,4 @@ certificate/
 
 # OS
 *.swp
+.DS_Store

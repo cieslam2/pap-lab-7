@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
     SSL_METHOD *my_ssl_method;
     SSL_CTX *my_ssl_ctx;
     SSL *my_ssl;
+
     int my_fd;
     struct sockaddr_in server;
     int error = 0, read_in = 0;
