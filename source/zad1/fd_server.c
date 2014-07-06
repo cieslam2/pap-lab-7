@@ -23,26 +23,26 @@ int main(int argc, char *argv[]) {
     int error = 0, wrote = 0;
     char buffer[] = "Hello there! Welcome to the SSL test server.\n\n";
 
-//    OpenSSL_add_all_algorithms();   // Initialize the OpenSSL library
-SSL_library_init(); 
+    //    OpenSSL_add_all_algorithms();   // Initialize the OpenSSL library
+    SSL_library_init();
     SSL_load_error_strings();       // Have the OpenSSL library load its error strings
 
-    my_ssl_method = TLSv1_server_method();  
+    my_ssl_method = TLSv1_server_method();
 
-    if((my_ssl_ctx = SSL_CTX_new(my_ssl_method)) == NULL) {
+    if ((my_ssl_ctx = SSL_CTX_new(my_ssl_method)) == NULL) {
         ERR_print_errors_fp(stderr);
         exit(1);
     }
 
-    SSL_CTX_use_certificate_file(my_ssl_ctx,"server.pem",SSL_FILETYPE_PEM); 
-    SSL_CTX_use_PrivateKey_file(my_ssl_ctx,"server.pem",SSL_FILETYPE_PEM);
+    SSL_CTX_use_certificate_file(my_ssl_ctx, "server.pem", SSL_FILETYPE_PEM);
+    SSL_CTX_use_PrivateKey_file(my_ssl_ctx, "server.pem", SSL_FILETYPE_PEM);
 
-    if(!SSL_CTX_check_private_key(my_ssl_ctx)) {
+    if (!SSL_CTX_check_private_key(my_ssl_ctx)) {
         fprintf(stderr,"Private key does not match certificate\n");
         exit(1);
     }
 
-    my_fd = socket(PF_INET, SOCK_STREAM, 0);        
+    my_fd = socket(PF_INET, SOCK_STREAM, 0);
     server.sin_family = AF_INET;
     server.sin_port = htons(5354);
     server.sin_addr.s_addr = INADDR_ANY;
@@ -74,7 +74,7 @@ SSL_library_init();
             if(error <= 0)
                 break;
         }
-        
+
         SSL_shutdown(my_ssl);
 
         SSL_free(my_ssl);

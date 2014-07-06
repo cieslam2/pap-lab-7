@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
 
     for (read_in = 0; read_in < sizeof(buffer); read_in += error) {
         error = SSL_read(my_ssl,buffer+read_in,sizeof(buffer) - read_in);
-        if(error <= 0)
+        if (error <= 0)
             break;
     }
 
@@ -72,4 +72,3 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
-

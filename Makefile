@@ -10,6 +10,9 @@ zad1:
 	${CC} ${CFLAGS} ${SRC}zad1/fd_client.c -o ${TARGET}zad1/fd_client.o
 	${CC} ${CFLAGS} ${SRC}zad1/fd_server.c -o ${TARGET}zad1/fd_server.o
 
+zad2:
+	${CC} ${CFLAGS} ${SRC}zad2/klientPliki.c -o ${TARGET}zad2/klientPliki.o
+	${CC} ${CFLAGS} ${SRC}zad2/serwerPliki.c -o ${TARGET}zad2/serwerPliki.o
+
 clean:
 	find ${TARGET} -name "*.o" | xargs rm -rf
-
